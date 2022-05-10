@@ -10,10 +10,10 @@ import './navbar.css';
                 <Container>
                     <List horizontal>
                         <List.Item>                        
-                             <Button color='orange' onClick={() => console.log("mergesort")}>Merge Sort</Button>
+                             <Button color='orange' onClick={props.onMergeSort}>Merge Sort</Button>
                         </List.Item>
                         <List.Item>                        
-                            <Button color='blue' onClick={() => console.log("quicksort")}>Quick Sort</Button>
+                            <Button color='blue' onClick={props.onQuickSort}>Quick Sort</Button>
                         </List.Item>
                         <List.Item>                        
                             <Button color='green' onClick={props.onBubbleSort}>Bubble Sort</Button>
@@ -23,7 +23,6 @@ import './navbar.css';
                         </List.Item>
                     </List>
                     <Button color='brown' floated='right' onClick={props.onRandomize}>Randomize</Button>
-                    <Button color='brown' floated='right' onClick={props.onBubbleSort}>Test Bubble Sort</Button>
                 </Container>
             </div>
         );
