@@ -7,5 +7,5 @@ The algorithms that have been implemented in this program are BubbleSort, Insert
 To run this program first
   1. Clone the project to your device 
   2. In the command line/terminal cd into Sorting-Visualizer\sortingVisualizer\app
-  3. enter 'npm run start'
+  3. enter 'npm run start' in the command line
 
