@@ -7,8 +7,6 @@ import { InsertionSort } from "../algorithms/InsertionSort";
 
 const SortVisualizer = () => {
     const [rectangle, setRectangle] = useState([]);
-    const [isSorting, setSorting] = useState(false);
-    const [isSorted, setSorted] = useState(false);
     const containerRef = null;
     
 
@@ -19,7 +17,7 @@ const SortVisualizer = () => {
     function generateRectangle() {
         let rectangleArr = [];
         let barStyling = document.getElementsByClassName("rectangularity");
-        for (let i = 0; i <= 78; i++) {
+        for (let i = 0; i <= 66; i++) {
             if (barStyling[i] != null) { 
                 barStyling[i].style.backgroundColor = "lightgreen";
             }
@@ -48,22 +46,23 @@ const SortVisualizer = () => {
     function animateArray() {
         //return the array of bars generated in our div
         const bars = containerRef.current.children;
-        for (let i = 0; i <= 78; i++) { 
+        for (let i = 0; i <= 66; i++) { 
             const barStyle = bars[i].style;
             setTimeout(() => (barStyle.backgroundColor = "red"), i * 10);
         }
-        setTimeout(() => { 
-            setSorted(true);
-            setSorting(false);
-        }, bars.length * 10);
     }
 
     function bubbleSort() {
+        const animations = BubbleSort(rectangle);
+        animateSort(animations);
+    }
+
+    function insertionSort() {
         const animations = InsertionSort(rectangle);
-        if (isSorting) { 
-            return;
-        }
-        setSorting(true);
+        animateSort(animations);
+    }
+    
+    function animateSort(animations) {
         animations.forEach(([comparison, swapped], i) => { 
             setTimeout(() => {
                 // no swap before and we have two elements [[indexToSwap, heightOfRectangle], swapped]
@@ -91,15 +90,6 @@ const SortVisualizer = () => {
         setTimeout(() => { 
             animateArray();
         }, 78 * 10);
-        // for (let i = 0; i < animations.length; i++) {
-        //     setTimeout(() => {
-        //         bar1 = animations[i];
-        //         bar2 = animations[i];
-        //         barStyling[bar1].style.backgroundColor = "red";
-        //         barStyling[bar2].style.backgroundColor = "red";
-        //        
-        //     }, i * 10);
-        // }
     }
 
     useEffect(generateRectangle, []);
@@ -109,6 +99,7 @@ const SortVisualizer = () => {
             <Navbar
                 // onMergeSort={mergeSort}
                 // onMergeSort={mergeSort}
+                onInsertionSort={insertionSort}
                 onBubbleSort={bubbleSort}
                 onRandomize={generateRectangle}
             />
@@ -116,7 +107,7 @@ const SortVisualizer = () => {
                 <div
                     className="rectangularity"
                     key={index}
-                    style={{ height: `${value}px`, width: `${100/78}vw` }}>
+                    style={{ height: `${value}px`, width: `${100/80}vw` }}>
                 </div>
             ))}
         </div>
